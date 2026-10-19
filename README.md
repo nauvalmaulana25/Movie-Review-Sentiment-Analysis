@@ -15,29 +15,29 @@
 ```mermaid
 flowchart TB
     subgraph Client["🌐 Client (Netlify CDN)"]
-        UI[React 18 SPA<br/>Neobrutalism Design]
+        UI[React 18 SPA\nNeobrutalism Design]
         Hook[useSentimentAnalysis Hook]
         API[API Service Layer]
     end
 
     subgraph Network["🔗 HTTPS/JSON"]
         direction LR
-        CORS[CORS Preflight<br/>OPTIONS /predict]
-        REQ[POST /predict<br/>{review: string}]
-        RES[200 OK<br/>{sentiment, confidence, model_type}]
+        CORS[CORS Preflight\nOPTIONS /predict]
+        REQ[POST /predict\n{review: string}]
+        RES[200 OK\n{sentiment, confidence, model_type}]
     end
 
     subgraph Backend["☁️ AWS Lambda (Container)"]
-        GW[API Gateway HTTP API<br/>ap-southeast-1]
+        GW[API Gateway HTTP API\nap-southeast-1]
         FastAPI[FastAPI + Mangum Handler]
         ModelLoader[ModelLoader Singleton]
         
         subgraph Models["🤖 ML Models"]
-            DL[Bidirectional LSTM<br/>deep_sentiment_model.h5<br/>tokenizer.pkl]
-            ML[Traditional ML<br/>sentiment_model.pkl<br/>tfidf_vectorizer.pkl]
+            DL[Bidirectional LSTM\ndeep_sentiment_model.h5\ntokenizer.pkl]
+            ML[Traditional ML\nsentiment_model.pkl\ntfidf_vectorizer.pkl]
         end
         
-        NLTK[NLTK Resources<br/>/opt/nltk_data]
+        NLTK[NLTK Resources\n/opt/nltk_data]
     end
 
     UI --> Hook
@@ -209,7 +209,7 @@ frontend/
 
 ```mermaid
 graph TD
-    App[App.tsx<br/>State: result<br/>Routes: /]
+    App[App.tsx\nState: result\nRoutes: /]
     App --> Header
     App --> HeroSection
     App --> SentimentAnalyzer
@@ -431,7 +431,7 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    Input[Raw Review Text] --> Clean[clean_text<br/>lowercase + HTML removal + alpha-only]
+    Input[Raw Review Text] --> Clean[clean_text\nlowercase + HTML removal + alpha-only]
     Clean --> Tokenize[nltk.word_tokenize]
     Tokenize --> Filter[Remove stopwords + len>2]
     Filter -->|DL Path| DLSeq[tokenizer.texts_to_sequences]
