@@ -14,25 +14,25 @@
 
 ```mermaid
 flowchart TB
-    subgraph Client["🌐 Client (Netlify CDN)"]
+    subgraph Client["Client (Netlify CDN)"]
         UI[React 18 SPA\nNeobrutalism Design]
         Hook[useSentimentAnalysis Hook]
         API[API Service Layer]
     end
 
-    subgraph Network["🔗 HTTPS/JSON"]
+    subgraph Network["HTTPS/JSON"]
         direction LR
         CORS[CORS Preflight\nOPTIONS /predict]
-        REQ[POST /predict\n(review: string)]
-        RES[200 OK\n(sentiment, confidence, model_type)]
+        REQ[POST /predict\nrequest body]
+        RES[200 OK\nresponse body]
     end
 
-    subgraph Backend["☁️ AWS Lambda (Container)"]
+    subgraph Backend["AWS Lambda (Container)"]
         GW[API Gateway HTTP API\nap-southeast-1]
         FastAPI[FastAPI + Mangum Handler]
         ModelLoader[ModelLoader Singleton]
         
-        subgraph Models["🤖 ML Models"]
+        subgraph Models["ML Models"]
             DL[Bidirectional LSTM\ndeep_sentiment_model.h5\ntokenizer.pkl]
             ML[Traditional ML\nsentiment_model.pkl\ntfidf_vectorizer.pkl]
         end
