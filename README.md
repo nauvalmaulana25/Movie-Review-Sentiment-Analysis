@@ -23,8 +23,8 @@ flowchart TB
     subgraph Network["🔗 HTTPS/JSON"]
         direction LR
         CORS[CORS Preflight\nOPTIONS /predict]
-        REQ[POST /predict\n{review: string}]
-        RES[200 OK\n{sentiment, confidence, model_type}]
+        REQ[POST /predict\n(review: string)]
+        RES[200 OK\n(sentiment, confidence, model_type)]
     end
 
     subgraph Backend["☁️ AWS Lambda (Container)"]
