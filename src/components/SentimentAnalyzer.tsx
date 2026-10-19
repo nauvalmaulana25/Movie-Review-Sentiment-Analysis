@@ -1,10 +1,21 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useSentimentAnalysis } from '../hooks/useSentimentAnalysis';
 import { TextArea, Button, Card } from './ui';
+import type { SentimentResult } from '../types';
 
-export function SentimentAnalyzer() {
+interface SentimentAnalyzerProps {
+  onAnalyzeComplete?: (result: SentimentResult) => void;
+}
+
+export function SentimentAnalyzer({ onAnalyzeComplete }: SentimentAnalyzerProps) {
   const [review, setReview] = useState('');
-  const { analyze, loading, error, clearError } = useSentimentAnalysis();
+  const { analyze, loading, error, clearError, result, clearResult } = useSentimentAnalysis();
+
+  useEffect(() => {
+    if (result && onAnalyzeComplete) {
+      onAnalyzeComplete(result);
+    }
+  }, [result, onAnalyzeComplete]);
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,7 +27,8 @@ export function SentimentAnalyzer() {
   const handleClear = useCallback(() => {
     setReview('');
     clearError();
-  }, [clearError]);
+    clearResult();
+  }, [clearError, clearResult]);
 
   const maxLength = 5000;
 
