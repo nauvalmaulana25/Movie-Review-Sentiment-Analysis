@@ -14,6 +14,10 @@ import type { SentimentResult } from './types';
 function App() {
   const [result, setResult] = useState<SentimentResult | null>(null);
 
+  const handleAnalyzeComplete = (newResult: SentimentResult) => {
+    setResult(newResult);
+  };
+
   const handleAnalyzeAnother = () => {
     setResult(null);
   };
@@ -28,7 +32,7 @@ function App() {
             <Route path="/" element={
               <>
                 <HeroSection />
-                <SentimentAnalyzer />
+                <SentimentAnalyzer onAnalyzeComplete={handleAnalyzeComplete} />
                 {result && <ResultCard result={result} onAnalyzeAnother={handleAnalyzeAnother} />}
                 <HowItWorks />
                 <Tutorial />
