@@ -1,6 +1,3 @@
-import { Link } from 'react-router-dom';
-import { Badge } from './ui';
-
 export function Header() {
   return (
     <header style={{ 
@@ -19,8 +16,8 @@ export function Header() {
         maxWidth: '1200px',
         margin: '0 auto',
       }}>
-        <Link 
-          to="/" 
+        <a 
+          href="/" 
           style={{ 
             display: 'flex', 
             alignItems: 'center', 
@@ -52,67 +49,9 @@ export function Header() {
             letterSpacing: '0.05em',
             color: '#1a1a1a',
           }}>
-            Movie Sentiment
+            Movie Sentiment Analyzer
           </span>
-        </Link>
-
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '1rem' }} aria-label="Main navigation">
-          <Link
-            to="#analyzer"
-            style={{
-              padding: '0.5rem 1rem',
-              fontSize: '0.875rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              color: '#1a1a1a',
-              borderBottom: '2px solid transparent',
-              transition: 'border-color 150ms ease',
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.borderBottomColor = '#000'}
-            onMouseLeave={(e) => e.currentTarget.style.borderBottomColor = 'transparent'}
-          >
-            Analyzer
-          </Link>
-          <Link
-            to="#how-it-works"
-            style={{
-              padding: '0.5rem 1rem',
-              fontSize: '0.875rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              color: '#1a1a1a',
-              borderBottom: '2px solid transparent',
-              transition: 'border-color 150ms ease',
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.borderBottomColor = '#000'}
-            onMouseLeave={(e) => e.currentTarget.style.borderBottomColor = 'transparent'}
-          >
-            How It Works
-          </Link>
-          <Link
-            to="#tutorial"
-            style={{
-              padding: '0.5rem 1rem',
-              fontSize: '0.875rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              color: '#1a1a1a',
-              borderBottom: '2px solid transparent',
-              transition: 'border-color 150ms ease',
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.borderBottomColor = '#000'}
-            onMouseLeave={(e) => e.currentTarget.style.borderBottomColor = 'transparent'}
-          >
-            Tutorial
-          </Link>
-        </nav>
-
-        <Badge variant="info" size="sm">
-          Bi-LSTM Model
-        </Badge>
+        </a>
       </div>
     </header>
   );
